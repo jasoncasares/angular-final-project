@@ -1,0 +1,18 @@
+<h1>Current Projects</h1>
+
+<hr>
+
+<a
+  data-ng-repeat="project in vm.projects"
+  ui-sref="projects.detail({ projectId: project.id })">
+
+  <h3>
+    <span data-ng-bind="project.name"></span> -
+    <span data-ng-bind="project.task"></span> -
+    <span data-ng-bind="project.date"></span>
+  </h3>
+</a>
+
+<div class="projectDetail">
+  <ui-view></ui-view>
+</div>

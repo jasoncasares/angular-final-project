@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resources :projects
+  resources :project
+
+  root to: "application#angular_home"
 end

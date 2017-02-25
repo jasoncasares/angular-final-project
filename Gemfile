@@ -16,6 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem "bower-rails", "~> 0.11.0"
+gem 'angular-rails-templates'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -14,11 +14,10 @@
          controller: 'ProjectsController as vm'
        })
         .state('projects.detail', {
-          url: '/projects/:projectId',
-          templateUrl: '/projects/projects.detail.html',
+          url: 'projects/:projectId',
+          templateUrl: 'projects/projects.detail.html',
           controller: 'ProjectsController as vm'
         })
-
 
     }]);
 }());

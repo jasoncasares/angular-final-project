@@ -9,6 +9,7 @@
         all,
         getDetail,
         create,
+        destroy,
       }
 
       function all() {
@@ -36,5 +37,16 @@
           .then(response => response.data)
           .catch(err => console.log(err));
       }
+
+      function destroy(projectId) {
+        const req = {
+          method: "DELETE",
+          url: '/projects/${projectId}',
+        }
+        return $http(req)
+          .then(response => console.log(response.data.message))
+          .catch(err => console.log(err));
+      }
+
     }]);
 }());

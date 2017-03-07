@@ -8,6 +8,7 @@
       var vm = this;
 
       vm.createProject = createProject;
+      vm.deleteProject = deleteProject;
 
       ProjectService.all()
         .then(data => $scope.projects = data)
@@ -23,6 +24,18 @@
           .create(vm.project)
           .then(project => $scope.$parent.projects.push(project))
           .then(vm.project = {})
+      }
+
+      function deleteProject() {
+        ProjectService
+          .destroy(vm.project.id)
+          .then(() => {
+            var currentProjects =
+            $scope.$parent.projects.filter(project => project.id
+            !== vm.project.id)
+            $scope.$parent.projects = currentProjects
+            $state.go('projects')
+          })
       }
 
     }]);

@@ -2,8 +2,9 @@
 
 <hr>
 
+<a ui-sref="projects.new">Create a Project</a>
 <a
-  data-ng-repeat="project in vm.projects"
+  data-ng-repeat="project in projects"
   ui-sref="projects.detail({ projectId: project.id })">
 
   <h3>

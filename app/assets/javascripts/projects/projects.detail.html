@@ -2,7 +2,8 @@
 <h4>
   <span data-ng-bind="vm.project.name"></span> on
   <span data-ng-bind="vm.project.date | date : 'mediumDate' "></span> |
-  <span data-ng-bind="vm.project.task"></span>
+  <span data-ng-bind="vm.project.task"></span> |
+  Complete<input type="checkbox" data-ng-bind="vm.project.completed">
 </h4>
 
 <button ng-click="vm.deleteProject()">Delete</button> | <button ng-click="$state.go('projects.edit',{ projectId: vm.project.id })">Edit</button>

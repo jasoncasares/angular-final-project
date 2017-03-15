@@ -10,6 +10,7 @@
         getDetail,
         create,
         destroy,
+        update,
       }
 
       function all() {
@@ -19,7 +20,7 @@
       }
 
       function getDetail(projectId) {
-        return $http.get('/projects/${projectId}')
+        return $http.get(`/projects/${projectId}`)
           .then(response => response.data)
           .catch(err => console.log(err));
       }
@@ -31,7 +32,7 @@
           headers : {
             'Content-Type': 'application/json'
           },
-          data: { project: projectinfo }
+          data: { project: projectInfo }
         }
         return $http(req)
           .then(response => response.data)
@@ -41,10 +42,24 @@
       function destroy(projectId) {
         const req = {
           method: "DELETE",
-          url: '/projects/${projectId}',
+          url: `/projects/${projectId}`,
         }
         return $http(req)
           .then(response => console.log(response.data.message))
+          .catch(err => console.log(err));
+      }
+
+      function update(projectId,projectDataNew) {
+        const req = {
+          method: "PATCH",
+          url: `/projects/${projectId}`,
+          data: { project: projectDataNew }
+        }
+        return $http(req)
+          .then(response => {
+            console.log(response.data);
+            return response.data;
+          })
           .catch(err => console.log(err));
       }
 

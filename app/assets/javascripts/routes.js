@@ -18,11 +18,18 @@
          templateUrl: 'projects/projects.new.html',
          controller: 'ProjectsController as vm'
        })
+       .state('projects.edit', {
+         url: 'projects/:projectId/edit',
+         templateUrl: 'projects/projects.edit.html',
+         controller: 'ProjectsController as vm'
+       })
         .state('projects.detail', {
           url: 'projects/:projectId',
           templateUrl: 'projects/projects.detail.html',
           controller: 'ProjectsController as vm'
-        })
+       })
+
+
 
 
     }]);

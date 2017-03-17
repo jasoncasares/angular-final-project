@@ -1,12 +1,22 @@
 <h1>Current Projects</h1>
-<a ui-sref="projects">Home</a>
+<a ui-sref="projects">Home</a> | <a ui-sref="projects.new">Create a Project</a>
 
 <hr>
 
-<a ui-sref="projects.new">Create a Project</a>
-<a
-  data-ng-repeat="project in projects"
-  ui-sref="projects.detail({ projectId: project.id })">
+<!--<input type="checkbox" ng-model="search.completed">-->
+<!--<a data-ng-repeat="project in projects | filter:search" ui-sref="projects.detail({ projectId: project.id })">-->
+
+<!--  <h3>-->
+<!--    <span data-ng-bind="project.name"></span> --->
+<!--    <span data-ng-bind="project.task"></span> --->
+<!--    <span data-ng-bind="project.date | date : 'mediumDate' "></span>-->
+<!--  </h3>-->
+<!--</a>-->
+
+
+
+<h2> Completed Projects</h2>
+<a data-ng-repeat="project in completedProjects " ui-sref="projects.detail({ projectId: project.id })">
 
   <h3>
     <span data-ng-bind="project.name"></span> -
@@ -14,7 +24,15 @@
     <span data-ng-bind="project.date | date : 'mediumDate' "></span>
   </h3>
 </a>
-
 <hr>
 
+<h2>Incomplete Projects</h2>
+<a data-ng-repeat="project in incompleteProjects " ui-sref="projects.detail({ projectId: project.id })">
+
+  <h3>
+    <span data-ng-bind="project.name"></span> -
+    <span data-ng-bind="project.task"></span> -
+    <span data-ng-bind="project.date | date : 'mediumDate' "></span> {{vm.isDue(project.date)}}
+  </h3>
+</a>
 <ui-view></ui-view>

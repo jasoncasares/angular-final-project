@@ -4,17 +4,31 @@
   angular
     .module('todoApp')
     .controller('ProjectsController',
-    ['ProjectService', '$state', '$stateParams', '$scope', function(ProjectService, $state, $stateParams, $scope) {
+    ['ProjectService', '$state', '$stateParams', '$scope', 'filterFilter', function(ProjectService, $state, $stateParams, $scope, filterFilter) {
       var vm = this;
 
       vm.createProject = createProject;
       vm.deleteProject = deleteProject;
       vm.editProject = editProject;
+      vm.isDue = isDue;
 
       $scope.$state = $state;
 
       ProjectService.all()
-        .then(data => $scope.projects = data)
+        .then((data) => {
+          $scope.completedProjects = [];
+          $scope.incompleteProjects = [];
+
+          data.forEach((project) => {
+            if(project.completed) {
+              $scope.completedProjects.push(project);
+            } else {
+              $scope.incompleteProjects.push(project)
+            }
+          })
+
+
+        })
 
       if ($stateParams.projectId) {
         ProjectService
@@ -25,6 +39,18 @@
           });
 
       }
+
+      function isDue(itemDateString) {
+        var now = new Date();
+        var itemDate = new Date(itemDateString);
+        console.log('now', now);
+        console.log('item date', itemDate);
+        console.log('compare' , now > itemDate);
+        if(now > itemDate) {
+          return 'past due';
+        }
+      }
+
 
       function createProject() {
         ProjectService

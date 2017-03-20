@@ -1,5 +1,5 @@
-<h1>Current Projects</h1>
-<a ui-sref="projects">Home</a> | <a ui-sref="projects.new">Create a Project</a>
+<h1>Project Manager</h1>
+<a ui-sref="projects">Home</a> | <a ui-sref="projects.new">Create Project</a> | <a ui-sref="projects.search">Search</a>
 
 <hr>
 
@@ -13,21 +13,8 @@
 <!--  </h3>-->
 <!--</a>-->
 
-
-
-<h2> Completed Projects</h2>
-<a data-ng-repeat="project in completedProjects " ui-sref="projects.detail({ projectId: project.id })">
-
-  <h3>
-    <span data-ng-bind="project.name"></span> -
-    <span data-ng-bind="project.task"></span> -
-    <span data-ng-bind="project.date | date : 'mediumDate' "></span>
-  </h3>
-</a>
-<hr>
-
-<h2>Incomplete Projects</h2>
-<a data-ng-repeat="project in incompleteProjects " ui-sref="projects.detail({ projectId: project.id })">
+<h2>Current Projects</h2>
+<a data-ng-repeat="project in vm.projects | filter: { completed: false} " ui-sref="projects.detail({ projectId: project.id })">
 
   <h3>
     <span data-ng-bind="project.name"></span> -
@@ -35,4 +22,17 @@
     <span data-ng-bind="project.date | date : 'mediumDate' "></span> {{vm.isDue(project.date)}}
   </h3>
 </a>
+
+<h2> Completed Projects</h2>
+<a data-ng-repeat="project in vm.projects | filter: { completed: true } " ui-sref="projects.detail({ projectId: project.id })">
+
+  <h3>
+    <span data-ng-bind="project.name"></span> -
+    <span data-ng-bind="project.task"></span> -
+    <span data-ng-bind="project.date | date : 'mediumDate' "></span>
+  </h3>
+</a>
+
+<hr>
+
 <ui-view></ui-view>

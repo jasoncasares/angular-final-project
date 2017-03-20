@@ -28,9 +28,11 @@
           templateUrl: 'projects/projects.detail.html',
           controller: 'ProjectsController as vm'
        })
-
-
-
+       .state('projects.search', {
+         url: 'projects/search',
+         templateUrl: 'projects/projects.search.html',
+         controller: 'ProjectsController as vm'
+      })
 
     }]);
 }());

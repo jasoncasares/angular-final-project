@@ -4,28 +4,30 @@
   angular
     .module('todoApp')
     .controller('ProjectsController',
-    ['ProjectService', '$state', '$stateParams', '$scope', 'filterFilter', function(ProjectService, $state, $stateParams, $scope, filterFilter) {
+    ['ProjectService', '$state', '$stateParams', '$scope', function(ProjectService, $state, $stateParams, $scope) {
       var vm = this;
 
       vm.createProject = createProject;
       vm.deleteProject = deleteProject;
       vm.editProject = editProject;
       vm.isDue = isDue;
+      vm.projects = [];
 
       $scope.$state = $state;
 
       ProjectService.all()
         .then((data) => {
-          $scope.completedProjects = [];
-          $scope.incompleteProjects = [];
+          vm.projects = data;
+        //  $scope.completedProjects = [];
+          //$scope.incompleteProjects = [];
 
-          data.forEach((project) => {
-            if(project.completed) {
-              $scope.completedProjects.push(project);
-            } else {
-              $scope.incompleteProjects.push(project)
-            }
-          })
+          //data.forEach((project) => {
+            //if(project.completed) {
+          //    $scope.completedProjects.push(project);
+          //  } else {
+          //    $scope.incompleteProjects.push(project)
+          //  }
+          //})
 
 
         })
@@ -43,43 +45,46 @@
       function isDue(itemDateString) {
         var now = new Date();
         var itemDate = new Date(itemDateString);
-        console.log('now', now);
-        console.log('item date', itemDate);
-        console.log('compare' , now > itemDate);
         if(now > itemDate) {
           return 'past due';
         }
       }
 
-
       function createProject() {
+
+        let cntrl = $scope.$parent;
         ProjectService
           .create(vm.project)
-          .then(project => $scope.$parent.projects.push(project))
+          .then(project => {
+            cntrl.vm.projects.push(project)
+          })
           .then(vm.project = {})
+          $state.go('projects')
       }
 
       function deleteProject() {
+        let cntrl = $scope.$parent;
         ProjectService
           .destroy(vm.project.id)
           .then(() => {
             var currentProjects =
-            $scope.$parent.projects.filter(project => project.id
+            cntrl.vm.projects.filter(project => project.id
             !== vm.project.id)
-            $scope.$parent.projects = currentProjects
+
             $state.go('projects')
           })
       }
 
       function editProject() {
-        $stateParams;
+        //$stateParams;
+        let cntrl = $scope.$parent;
         ProjectService
           .update(vm.project.id, vm.project)
           .then(project => {
-            $scope.$parent.projects.forEach(
+            cntrl.vm.projects.forEach(
               function (p, index) {
                 if (p.id == project.id){
-                  $scope.$parent.projects[index] = project
+                  cntrl.vm.projects[index] = project
                 }
               }
             )

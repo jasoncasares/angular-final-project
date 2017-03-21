@@ -76,7 +76,7 @@
       }
 
       function editProject() {
-        //$stateParams;
+        $stateParams;
         let cntrl = $scope.$parent;
         ProjectService
           .update(vm.project.id, vm.project)

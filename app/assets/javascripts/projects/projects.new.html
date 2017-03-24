@@ -3,24 +3,33 @@
 <form name="form" ng-submit="vm.createProject()">
   <label for="name">Project</label>
   <input
+    name="projectname"
     type="text"
     required="required"
-    minlength="1"
+    minlength="2"
     maxlength="20"
     ng-model="vm.project.name">
-
-    <div ng-if="form.project.name.$touched && form.project.name.$error.required">
-        Project name is required!
-    </div>
-    <div ng-if="form.project.name.$touched && (form.project.name.$error.minlength || form.username.$error.maxlength)">
-        Username must be between 1-20 characters!
-    </div>
-
+    <div ng-messages="form.projectname.$error"></div>
 
   <label for="task">Task</label>
-  <input type="text" ng-model="vm.project.task">
+  <input
+    type="text"
+    name="task"
+    required="required"
+    minlength="2"
+    maxlength="20"
+    ng-model="vm.project.task">
+    <div ng-messages="form.task.$error"></div>
+
+
   <label for="date">Due Date:</label>
-  <input type="date" ng-model="vm.project.date">
+  <input
+    type="date"
+    name="date"
+    required="required"
+    ng-model="vm.project.date">
+    <div ng-messages="form.date.$error"></div>
+
   <label for="completed">Completed</label>
   <input type="checkbox" ng-model="vm.project.completed">
   <input type="submit" value="Create Project">

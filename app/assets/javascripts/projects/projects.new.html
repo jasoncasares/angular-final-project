@@ -1,8 +1,22 @@
 <h3>Create a Project</h3>
 
-<form ng-submit="vm.createProject()">
+<form name="form" ng-submit="vm.createProject()">
   <label for="name">Project</label>
-  <input type="text" ng-model="vm.project.name">
+  <input
+    type="text"
+    required="required"
+    minlength="1"
+    maxlength="20"
+    ng-model="vm.project.name">
+
+    <div ng-if="form.project.name.$touched && form.project.name.$error.required">
+        Project name is required!
+    </div>
+    <div ng-if="form.project.name.$touched && (form.project.name.$error.minlength || form.username.$error.maxlength)">
+        Username must be between 1-20 characters!
+    </div>
+
+
   <label for="task">Task</label>
   <input type="text" ng-model="vm.project.task">
   <label for="date">Due Date:</label>

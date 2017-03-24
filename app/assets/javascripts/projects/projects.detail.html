@@ -5,6 +5,8 @@
   <span data-ng-bind="vm.project.task"></span>
 </h4>
 
+Completed<input type="checkbox" ng-model="vm.project.completed" ng-click="vm.editProject()"> <br>
 
+<br>
 
 <button ng-click="vm.deleteProject()">Delete</button> | <button ng-click="$state.go('projects.edit',{ projectId: vm.project.id })">Edit</button>

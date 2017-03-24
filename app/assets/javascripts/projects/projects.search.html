@@ -1,5 +1,5 @@
-<h2>Completed  <input type="checkbox" ng-model="search.completed"></h2>
-<a data-ng-repeat="project in vm.projects | filter:search" ui-sref="projects.detail({ projectId: project.id })">
+<h2>Search  <input ng-model="searchName"></h2>
+<a data-ng-repeat="project in vm.projects | filter:searchName" ui-sref="projects.detail({ projectId: project.id })">
 
  <h3>
    <span data-ng-bind="project.name"></span> -
@@ -7,16 +7,3 @@
    <span data-ng-bind="project.date | date : 'mediumDate' "></span>
  </h3>
 </a>
-
-<hr>
-
-<!-- <h2>Past Due</h2>
-<input type="checkbox" ng-model="search.isDue">
-<a data-ng-repeat="project in vm.projects | filter:search" ui-sref="projects.detail({ projectId: project.id })">
-
- <h3>
-   <span data-ng-bind="project.name"></span> -
-   <span data-ng-bind="project.task"></span> -
-   <span data-ng-bind="project.date | date : 'mediumDate' "></span>
- </h3>
-</a> -->

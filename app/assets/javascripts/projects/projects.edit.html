@@ -1,12 +1,35 @@
 <h3>Edit Project</h3>
 
-<form ng-submit="vm.editProject()">
+<form name="form" ng-submit="vm.editProject()">
   <label for="name">Project</label>
-  <input type="text" ng-model="vm.project.name">
+  <input
+    name="name"
+    type="text"
+    required="required"
+    minlength="2"
+    maxlength="20"
+    ng-model="vm.project.name">
+    <div ng-messages="form.name.$error"></div>
+
   <label for="task">Task</label>
-  <input type="text" ng-model="vm.project.task">
-  <label for="date">Date:</label>
-  <input type="date" ng-model="vm.project.date">
+  <input
+    type="text"
+    name="task"
+    required="required"
+    minlength="2"
+    maxlength="20"
+    ng-model="vm.project.task">
+    <div ng-messages="form.task.$error"></div>
+
+
+  <label for="date">Due Date:</label>
+  <input
+    type="date"
+    name="date"
+    required="required"
+    ng-model="vm.project.date">
+    <div ng-messages="form.date.$error"></div>
+
   <label for="completed">Completed</label>
   <input type="checkbox" ng-model="vm.project.completed">
   <input type="submit" value="Edit Project">

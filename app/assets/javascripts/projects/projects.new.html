@@ -3,13 +3,13 @@
 <form name="form" ng-submit="vm.createProject()">
   <label for="name">Project</label>
   <input
-    name="projectname"
+    name="name"
     type="text"
     required="required"
     minlength="2"
     maxlength="20"
     ng-model="vm.project.name">
-    <div ng-messages="form.projectname.$error"></div>
+    <div ng-messages="form.name.$error"></div>
 
   <label for="task">Task</label>
   <input

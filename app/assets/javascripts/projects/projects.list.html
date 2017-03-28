@@ -3,18 +3,8 @@
 
 <hr>
 
-<!--<input type="checkbox" ng-model="search.completed">-->
-<!--<a data-ng-repeat="project in projects | filter:search" ui-sref="projects.detail({ projectId: project.id })">-->
-
-<!--  <h3>-->
-<!--    <span data-ng-bind="project.name"></span> --->
-<!--    <span data-ng-bind="project.task"></span> --->
-<!--    <span data-ng-bind="project.date | date : 'mediumDate' "></span>-->
-<!--  </h3>-->
-<!--</a>-->
-
 <h2>Current Projects</h2>
-<a data-ng-repeat="project in vm.projects | filter: { completed: false} " ui-sref="projects.detail({ projectId: project.id })">
+<a data-ng-repeat="project in vm.projects | filter: { completed: false} " ui-sref="projects.detail({ projectId: project.id, projectsArr: vm.projects })">
 
   <h3>
     <span data-ng-bind="project.name"></span> -

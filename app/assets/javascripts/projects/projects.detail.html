@@ -1,6 +1,6 @@
 <h4>Project</h4>
 <h4>
-  <span data-ng-bind="vm.project.name"></span> due on
+  <span data-ng-bind="vm.project.name"></span> is due on
   <span data-ng-bind="vm.project.date | date : 'mediumDate' "></span> |
   <span data-ng-bind="vm.project.task"></span>
 </h4>
@@ -9,4 +9,4 @@ Completed<input type="checkbox" ng-model="vm.project.completed" ng-click="vm.edi
 
 <br>
 
-<button ng-click="vm.deleteProject()">Delete</button> | <button ng-click="$state.go('projects.edit',{ projectId: vm.project.id })">Edit</button>
+<button ng-click="vm.deleteProject(vm.project.id)">Delete</button> | <button ng-click="$state.go('projects.edit',{ projectId: vm.project.id })">Edit</button>

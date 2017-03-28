@@ -4,7 +4,7 @@
   angular
     .module('todoApp')
     .controller('ProjectsController',
-    ['ProjectService', '$state', '$stateParams', '$scope', function(ProjectService, $state, $stateParams, $scope) {
+    ['ProjectService', '$state', '$rootScope', '$stateParams', '$scope', function(ProjectService, $state, $rootScope, $stateParams, $scope) {
       var vm = this;
 
       vm.createProject = createProject;
@@ -15,22 +15,14 @@
 
       $scope.$state = $state;
 
-      ProjectService.all()
-        .then((data) => {
-          vm.projects = data;
-        //  $scope.completedProjects = [];
-          //$scope.incompleteProjects = [];
+      function getAllProjects () {
+        ProjectService.all()
+          .then((data) => {
+            vm.projects = data;
+          });
+      }
 
-          //data.forEach((project) => {
-            //if(project.completed) {
-          //    $scope.completedProjects.push(project);
-          //  } else {
-          //    $scope.incompleteProjects.push(project)
-          //  }
-          //})
-
-
-        })
+      getAllProjects();
 
       if ($stateParams.projectId) {
         ProjectService
@@ -62,16 +54,17 @@
           $state.go('projects')
       }
 
-      function deleteProject() {
+      function deleteProject(id) {
         let cntrl = $scope.$parent;
         ProjectService
           .destroy(vm.project.id)
-          .then(() => {
-            var currentProjects =
-            cntrl.vm.projects.filter(project => project.id
-            !== vm.project.id)
-
-            $state.go('projects')
+          .then((res) => {
+            for(let i = 0; i < cntrl.vm.projects.length; i++) {
+              const project = cntrl.vm.projects[i];
+              if(project.id === id) {
+                cntrl.vm.projects.splice(i, 1);
+              }
+            }
           })
       }
 

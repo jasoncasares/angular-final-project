@@ -15,10 +15,15 @@
 
       $scope.$state = $state;
 
+      // $scope.counter = 0;
+
       function getAllProjects () {
         ProjectService.all()
           .then((data) => {
             vm.projects = data;
+            for (let i = 0, l = vm.projects.length; i < l; i++) {
+              vm.projects[i].counter = 0
+            }
           });
       }
 
@@ -65,6 +70,8 @@
                 cntrl.vm.projects.splice(i, 1);
               }
             }
+            $state.go('projects')
+
           })
       }
 
@@ -84,6 +91,7 @@
             $state.go('projects')
           })
       }
+
 
     }]);
 }());

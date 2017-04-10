@@ -4,24 +4,35 @@
 <hr>
 
 <h2>Current Projects</h2>
-<a data-ng-repeat="project in vm.projects | filter: { completed: false} " ui-sref="projects.detail({ projectId: project.id, projectsArr: vm.projects })">
 
+<div data-ng-repeat="project in vm.projects | filter: { completed: false} ">
+
+  <a ui-sref="projects.detail({ projectId: project.id })">
   <h3>
     <span data-ng-bind="project.name"></span> -
     <span data-ng-bind="project.task"></span> -
     <span data-ng-bind="project.date | date : 'mediumDate' "></span> {{vm.isDue(project.date)}}
   </h3>
-</a>
+  </a>
+
+  <button ng-click="project.counter = project.counter + 1">Click Me</button>
+    Clicks: {{project.counter}}
+
+</div>
 
 <h2> Completed Projects</h2>
-<a data-ng-repeat="project in vm.projects | filter: { completed: true } " ui-sref="projects.detail({ projectId: project.id })">
+<div data-ng-repeat="project in vm.projects | filter: { completed: true } " >
 
+  <a ui-sref="projects.detail({ projectId: project.id })">
   <h3>
     <span data-ng-bind="project.name"></span> -
     <span data-ng-bind="project.task"></span> -
     <span data-ng-bind="project.date | date : 'mediumDate' "></span>
   </h3>
-</a>
+  </a>
+</div>
+
+
 
 <hr>
 
